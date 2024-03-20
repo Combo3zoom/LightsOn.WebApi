@@ -17,12 +17,14 @@ public partial class Testing : IAsyncLifetime
     private static IServiceScopeFactory _scopeFactory = null!;
     private static string? _userId;
     public Mock<IDateTimeOffSet> _mockDataTimeOffset = null!;
+    public Mock<ITelegramBot> _mockTelegramBot = null!;
     
     public async Task InitializeAsync()
     {
         _database = await TestDatabaseFactory.CreateAsync();
         _mockDataTimeOffset = new Mock<IDateTimeOffSet>();
-        _factory = new CustomWebApplicationFactory(_database.GetConnection(), _mockDataTimeOffset);
+        _mockTelegramBot = new Mock<ITelegramBot>();
+        _factory = new CustomWebApplicationFactory(_database.GetConnection(), _mockDataTimeOffset, _mockTelegramBot);
         _scopeFactory = _factory.Services.GetRequiredService<IServiceScopeFactory>();
     }
 

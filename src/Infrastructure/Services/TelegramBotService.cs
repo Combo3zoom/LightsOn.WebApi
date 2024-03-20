@@ -20,11 +20,15 @@ public class TelegramBotService : ITelegramBot
         _logger = logger;
 
         var token = configuration["TelegramBotSettings:Token"];
-        var chatIdsValue = configuration["TelegramBotSettings:AllowedChatIds"];
-        var chatIds = chatIdsValue?.Split(',').Select(long.Parse).ToList();
+        var chatIdsSection = configuration.GetSection("TelegramBotSettings:AllowedChatIds").AsEnumerable();
+        
+        var chatIds = chatIdsSection
+            .Where(x => x.Value != null)
+            .Select(x => long.Parse(x.Value!))
+            .ToList();
 
         _botClient = new TelegramBotClient(token!);
-        _allowedChatIds = chatIds ?? [];
+        _allowedChatIds = chatIds;
     }
 
     public async Task SendMessageToAllowedUsers(string message)
@@ -34,11 +38,11 @@ public class TelegramBotService : ITelegramBot
             try
             {
                 await _botClient.SendTextMessageAsync(chatId, message);
-                _logger.LogInformation($"Message sent to {chatId}");
+                _logger.LogInformation("Message sent to {ChatId}", chatId);
             }
             catch (Exception ex)
             {
-                _logger.LogError($"Failed to send message to {chatId}: {ex.Message}");
+                _logger.LogError("Failed to send message to {ChatId}: {ExceptionMessage}", chatId, ex.Message);
             }
         }
     }

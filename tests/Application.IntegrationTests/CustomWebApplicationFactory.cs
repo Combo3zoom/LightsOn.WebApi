@@ -17,11 +17,15 @@ public class CustomWebApplicationFactory : WebApplicationFactory<WebApi.Program>
 {
     private readonly DbConnection _connection;
     private readonly Mock<IDateTimeOffSet> _iDateTimeOffset;
+    private readonly Mock<ITelegramBot> _mockTelegramBot;
 
-    public CustomWebApplicationFactory(DbConnection connection, Mock<IDateTimeOffSet> iDateTimeOffset)
+    public CustomWebApplicationFactory(DbConnection connection, 
+        Mock<IDateTimeOffSet> iDateTimeOffset,
+        Mock<ITelegramBot> mockTelegramBot)
     {
         _connection = connection;
         _iDateTimeOffset = iDateTimeOffset;
+        _mockTelegramBot = mockTelegramBot;
     }
 
     protected override void ConfigureWebHost(IWebHostBuilder builder)
@@ -32,9 +36,11 @@ public class CustomWebApplicationFactory : WebApplicationFactory<WebApi.Program>
                 .RemoveAll<IUser>()
                 .AddTransient(provider => Mock.Of<IUser>(s => s.Id == GetUserId()));
             services
-                .RemoveAll<IDateTimeOffSet>();
-            services
+                .RemoveAll<IDateTimeOffSet>()
                 .AddScoped<IDateTimeOffSet>(provider => _iDateTimeOffset.Object);
+            services
+                .RemoveAll<ITelegramBot>()
+                .AddScoped<ITelegramBot>(provider => _mockTelegramBot.Object);
             services
                 .RemoveAll<DbContextOptions<ApplicationDbContext>>()
                 .AddDbContext<ApplicationDbContext>((sp, options) =>

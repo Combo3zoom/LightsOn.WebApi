@@ -29,10 +29,6 @@ public static class ConfigureServices
             .AddDbContextCheck<ApplicationDbContext>();
 
         services.AddExceptionHandler<CustomExceptionHandler>();
-
-        services.AddRazorPages();
-        
-        services.AddServerSideBlazor();
         
         services.AddScoped<ILogger, Logger<LoggingBroker>>();
         services.AddScoped<ILoggingBroker, LoggingBroker>();

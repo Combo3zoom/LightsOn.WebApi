@@ -28,7 +28,7 @@ app.UseStaticFiles();
 app.UseSwagger();
 app.UseSwaggerUI(c =>
 {
-    c.SwaggerEndpoint("/api/swagger/v1/swagger.json", "My API V1");
+    c.SwaggerEndpoint("v1/swagger.json", "My API V1");
     c.RoutePrefix = "api/swagger";  
 });
 

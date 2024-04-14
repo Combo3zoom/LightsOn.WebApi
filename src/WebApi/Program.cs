@@ -2,6 +2,7 @@ using LightsOn.Application;
 using LightsOn.WebApi;
 using LightsOn.WebApi.Infrastructure;
 using Microsoft.Extensions.Primitives;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,11 +23,15 @@ else
 {
     app.UseHsts();
 }
+app.UseForwardedHeaders();
 
 app.UseHealthChecks("/health");
 app.UseStaticFiles();
 
-app.UseSwagger();
+app.UseSwagger(options =>
+{
+    options.RouteTemplate = "api/swagger/{documentName}/swagger.{json|yaml}";
+});
 app.UseSwaggerUI(c =>
 {
     c.SwaggerEndpoint("/swagger/v1/swagger.json", "NAME");
@@ -34,16 +39,6 @@ app.UseSwaggerUI(c =>
 });
 
 app.MapEndpoints();
-
-app.Use((context, next) =>
-{
-    if (context.Request.Headers.TryGetValue("X-Forwarded-Path", out StringValues values) 
-        && values.Count > 0)
-    {
-        context.Request.PathBase = values[0];
-    }
-    return next();
-});
 
 app.Run();
 

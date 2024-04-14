@@ -1,6 +1,7 @@
 using LightsOn.Application;
 using LightsOn.WebApi;
 using LightsOn.WebApi.Infrastructure;
+using Microsoft.Extensions.Primitives;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,25 +26,24 @@ else
 app.UseHealthChecks("/health");
 app.UseStaticFiles();
 
-app.UseSwagger(c => {
-    c.RouteTemplate = "api/swagger/{documentName}/swagger.json";
-});
+app.UseSwagger();
 app.UseSwaggerUI(c =>
 {
-    c.SwaggerEndpoint("v1/swagger.json", "NAME");
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "NAME");
+    c.SwaggerEndpoint("/api/swagger/v1/swagger.json", "NAME Reverse proxy");
 });
 
 app.MapEndpoints();
 
-// app.Use((context, next) =>
-// {
-//     if (context.Request.Headers.TryGetValue("X-Forwarded-Path", out StringValues values) 
-//         && values.Count > 0)
-//     {
-//         context.Request.PathBase = values[0];
-//     }
-//     return next();
-// });
+app.Use((context, next) =>
+{
+    if (context.Request.Headers.TryGetValue("X-Forwarded-Path", out StringValues values) 
+        && values.Count > 0)
+    {
+        context.Request.PathBase = values[0];
+    }
+    return next();
+});
 
 app.Run();
 

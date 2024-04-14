@@ -25,14 +25,11 @@ else
 app.UseHealthChecks("/health");
 app.UseStaticFiles();
 
-app.UseSwagger(options =>
-{
-    options.RouteTemplate = "api/swagger/{documentName}/swagger.json";
-});
+app.UseSwagger();
 app.UseSwaggerUI(c =>
 {
     c.SwaggerEndpoint("/api/swagger/v1/swagger.json", "My API V1");
-    c.RoutePrefix = "api/swagger";
+    c.RoutePrefix = "swagger";
 });
 
 app.MapEndpoints();

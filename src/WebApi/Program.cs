@@ -26,17 +26,24 @@ app.UseHealthChecks("/health");
 app.UseStaticFiles();
 
 app.UseSwagger(c => {
-    c.RouteTemplate = "/api/swagger/{documentName}/swagger.json";
+    c.RouteTemplate = "api/swagger/{documentName}/swagger.json";
 });
 app.UseSwaggerUI(c =>
 {
-    c.SwaggerEndpoint("swagger/v1/swagger.json", "My API V1");
-    c.RoutePrefix = "api";
+    c.SwaggerEndpoint("v1/swagger.json", "NAME");
 });
 
 app.MapEndpoints();
 
-app.UsePathBase(new PathString("/api"));
+// app.Use((context, next) =>
+// {
+//     if (context.Request.Headers.TryGetValue("X-Forwarded-Path", out StringValues values) 
+//         && values.Count > 0)
+//     {
+//         context.Request.PathBase = values[0];
+//     }
+//     return next();
+// });
 
 app.Run();
 

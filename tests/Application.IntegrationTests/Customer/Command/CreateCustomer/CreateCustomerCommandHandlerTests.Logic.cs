@@ -11,6 +11,7 @@ public partial class CreateCustomerCommandHandlerTests
         var time = _testing._mockDataTimeOffset.Object.Now;
         _testing._mockTelegramBot.Setup(bot => bot.SendMessageToAllowedUsers(It.IsAny<string>()))
             .ThrowsAsync(new Exception("Unhandled exception"));
+        
         var userId = await _testing.RunAsDefaultUserAsync();
         
         var createdCustomerCommand = new CreateCustomerCommand(exceptedCustomer.Name, exceptedCustomer.PhoneNumber);

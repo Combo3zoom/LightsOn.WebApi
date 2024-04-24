@@ -5,13 +5,13 @@ namespace LightsOn.Application.Client.Queries.GetClients;
 
 public record GetClientsQuery : IRequest<List<ClientBriefDto>>;
 
-public class GetClientsQueryHandler : IRequestHandler<GetClientsQuery, List<ClientBriefDto>>
+public class GetCompanyPhoneNumbersQueryHandler : IRequestHandler<GetClientsQuery, List<ClientBriefDto>>
 {
     private readonly IApplicationDbContext _context;
     private readonly IMapper _mapper;
     private readonly IGetClientsQueryStorageBroker _getClientsQueryStorageBroker;
 
-    public GetClientsQueryHandler(IApplicationDbContext context, IMapper mapper,
+    public GetCompanyPhoneNumbersQueryHandler(IApplicationDbContext context, IMapper mapper,
         IGetClientsQueryStorageBroker getClientsQueryStorageBroker)
     {
         _context = context;

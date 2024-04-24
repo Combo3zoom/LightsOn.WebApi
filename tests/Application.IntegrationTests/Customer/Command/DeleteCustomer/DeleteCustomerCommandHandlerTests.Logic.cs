@@ -7,10 +7,10 @@ public partial class DeleteCustomerCommandHandlerTests
 {
     [Theory]
     [MemberData(nameof(s_randomCustomerTestCaseSource))]
-    public async Task ShouldDeleteCustomer(Domain.Entities.Customer randomCustomer)
+    public async Task ShouldDeleteCustomer(Domain.Entities.Customer exceptedCustomer)
     {
-        var customerId = await _testing.SendAsync(new CreateCustomerCommand(randomCustomer.Name,
-            randomCustomer.PhoneNumber));
+        var customerId = await _testing.SendAsync(new CreateCustomerCommand(exceptedCustomer.Name,
+            exceptedCustomer.PhoneNumber, exceptedCustomer.DescribeProblem));
 
         await _testing.SendAsync(new DeleteCustomerCommand(customerId));
 

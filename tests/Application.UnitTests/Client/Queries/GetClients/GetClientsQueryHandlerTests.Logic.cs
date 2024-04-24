@@ -5,7 +5,7 @@ using Xunit;
 
 namespace LightsOn.Application.UnitTests.Client.Queries.GetClients;
 
-public partial class GetClientsQueryHandlerTests
+public partial class GetServiceDescriptionsQueryHandlerTests
 {
     [Fact]
     public async Task ShouldGetClientsOnHandleAsync()
@@ -14,7 +14,7 @@ public partial class GetClientsQueryHandlerTests
         var expectedClients = this.CreateRandomClients(5);
         
         // when
-        var clientsHandle = await this._getClientsQueryHandler
+        var clientsHandle = await this._getCompanyPhoneNumbersQueryHandler
             .Handle(new GetClientsQuery(), CancellationToken.None);
         
         // then
@@ -31,7 +31,7 @@ public partial class GetClientsQueryHandlerTests
         List<Domain.Entities.Client> expectedClients = new List<Domain.Entities.Client>();
         
         // when
-        var clientsHandle = await this._getClientsQueryHandler
+        var clientsHandle = await this._getCompanyPhoneNumbersQueryHandler
             .Handle(new GetClientsQuery(), CancellationToken.None);
         
         // then

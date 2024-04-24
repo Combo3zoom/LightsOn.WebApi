@@ -9,6 +9,7 @@ public interface IApplicationDbContext
     DbSet<TodoItem> TodoItems { get; }
     DbSet<Domain.Entities.CategoryExpense> CategoryExpenses { get; }
 
+    DbSet<Domain.Entities.CompanyPhoneNumber> CompanyPhoneNumbers { get; }
     DbSet<Domain.Entities.Client> Clients { get; }
     DbSet<LightsOn.Domain.Entities.Customer> Customers { get; }
     DbSet<Domain.Entities.Engine> Engines { get; }
@@ -17,6 +18,7 @@ public interface IApplicationDbContext
     DbSet<Domain.Entities.Material> Materials { get; }
 
     DbSet<Domain.Entities.PowerEquipment> PowerEquipments { get; }
+    DbSet<Domain.Entities.ServiceDescription> ServiceDescriptions { get; }
     DbSet<Domain.Entities.UnitMeasurement> UnitMeasurements { get; }
 
     DbSet<Domain.Entities.WorkPerformanceDescription> WorkPerformanceDescriptions{ get; }

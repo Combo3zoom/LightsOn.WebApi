@@ -5,12 +5,12 @@ namespace LightsOn.Application.Client.Commands.DeleteClient;
 
 public record DeleteCommandClient(int Id) : IRequest;
 
-public class DeleteClientCommandHandler : IRequestHandler<DeleteCommandClient>
+public class DeleteCompanyPhoneNumberCommandHandler : IRequestHandler<DeleteCommandClient>
 {
     private readonly IApplicationDbContext _context;
     private readonly IDeleteClientCommandHandlerStorageBroker _deleteClientCommandHandlerStorageBroker;
 
-    public DeleteClientCommandHandler(IApplicationDbContext context,
+    public DeleteCompanyPhoneNumberCommandHandler(IApplicationDbContext context,
         IDeleteClientCommandHandlerStorageBroker deleteClientCommandHandlerStorageBroker)
     {
         _context = context;

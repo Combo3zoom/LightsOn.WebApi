@@ -20,7 +20,8 @@ public class CustomerCreatedEventHandler : INotificationHandler<CustomerCreatedE
         _logger.LogInformation("Customer created event: {DomainEvent}", notification.GetType().Name);
         
         await _telegramBot.SendMessageToAllowedUsers($"Customer name {notification.Customer.Name}\n" +
-                                                     $"Phone number {notification.Customer.PhoneNumber}");
+                                                     $"Phone number {notification.Customer.PhoneNumber}\n"+
+                                                    $"Description problem {notification.Customer.DescribeProblem}");
         
         _logger.LogInformation("Send telegram bot message event");
     }

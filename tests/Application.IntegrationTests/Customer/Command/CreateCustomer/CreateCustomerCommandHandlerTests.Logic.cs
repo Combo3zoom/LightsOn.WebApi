@@ -14,14 +14,16 @@ public partial class CreateCustomerCommandHandlerTests
         
         var userId = await _testing.RunAsDefaultUserAsync();
         
-        var createdCustomerCommand = new CreateCustomerCommand(exceptedCustomer.Name, exceptedCustomer.PhoneNumber);
+        var createdCustomerCommand = new CreateCustomerCommand(
+            exceptedCustomer.Name, exceptedCustomer.PhoneNumber, exceptedCustomer.DescribeProblem);
         
         var customerId = await _testing.SendAsync(createdCustomerCommand);
         var actualCustomer = await _testing.FindAsync<Domain.Entities.Customer>(customerId);
         
         actualCustomer!.Name.Should().Be(exceptedCustomer.Name);
-        actualCustomer!.PhoneNumber.Should().Be(exceptedCustomer.PhoneNumber);
-        actualCustomer!.CreatedBy.Should().Be(userId);
+        actualCustomer.PhoneNumber.Should().Be(exceptedCustomer.PhoneNumber);
+        actualCustomer.DescribeProblem.Should().Be(exceptedCustomer.DescribeProblem);
+        actualCustomer.CreatedBy.Should().Be(userId);
         actualCustomer.Created.Should().BeExactly(time);
         actualCustomer.LastModifiedBy.Should().Be(userId);
         actualCustomer.LastModified.Should().BeExactly(time);

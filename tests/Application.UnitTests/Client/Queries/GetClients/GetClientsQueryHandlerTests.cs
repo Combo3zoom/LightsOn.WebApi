@@ -10,12 +10,12 @@ using Tynamix.ObjectFiller;
 
 namespace LightsOn.Application.UnitTests.Client.Queries.GetClients;
 
-public partial class GetClientsQueryHandlerTests
+public partial class GetServiceDescriptionsQueryHandlerTests
 {
     private Mock<IApplicationDbContext> _mockContext;
     private Mock<IGetClientsQueryStorageBroker> _mockGetClientsQueryStorageBroker;
     private IConfigurationProvider _configuration = null!;
-    private GetClientsQueryHandler _getClientsQueryHandler;
+    private GetCompanyPhoneNumbersQueryHandler _getCompanyPhoneNumbersQueryHandler;
     private IMapper _mapper = null!;
     
     public static IEnumerable<object[]> s_randomClientTestCaseSource = new List<object[]>
@@ -23,7 +23,7 @@ public partial class GetClientsQueryHandlerTests
         new object[] {CreateRandomClient()}
     };
     
-    public GetClientsQueryHandlerTests()
+    public GetServiceDescriptionsQueryHandlerTests()
     {
         _mockContext = new Mock<IApplicationDbContext>();
 
@@ -35,7 +35,7 @@ public partial class GetClientsQueryHandlerTests
         MapperSettings();
 
         _mockGetClientsQueryStorageBroker = new Mock<IGetClientsQueryStorageBroker>();
-        _getClientsQueryHandler = new GetClientsQueryHandler(_mockContext.Object, this._mapper!, 
+        _getCompanyPhoneNumbersQueryHandler = new GetCompanyPhoneNumbersQueryHandler(_mockContext.Object, this._mapper!, 
             _mockGetClientsQueryStorageBroker.Object);
     }
 

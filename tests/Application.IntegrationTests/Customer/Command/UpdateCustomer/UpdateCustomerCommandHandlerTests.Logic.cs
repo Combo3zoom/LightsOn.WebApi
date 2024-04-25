@@ -12,7 +12,8 @@ public partial class UpdateCustomerCommandHandlerTests
     {
         var userId = await _testing.RunAsDefaultUserAsync();
         
-        var createdCustomerCommand = new CreateCustomerCommand(exceptedCustomer.Name, exceptedCustomer.PhoneNumber);
+        var createdCustomerCommand = new CreateCustomerCommand(
+            exceptedCustomer.Name, exceptedCustomer.PhoneNumber, exceptedCustomer.DescribeProblem);
         var customerId = await _testing.SendAsync(createdCustomerCommand);
 
         var updatedCustomerCommand = new UpdateCustomerCommand(customerId, updateName, updatePhoneNumber);

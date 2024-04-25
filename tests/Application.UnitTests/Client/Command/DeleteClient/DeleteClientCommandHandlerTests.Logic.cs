@@ -7,7 +7,7 @@ using Xunit;
 
 namespace LightsOn.Application.UnitTests.Client.Command.DeleteClient;
 
-public partial class DeleteClientCommandHandlerTests
+public partial class DeleteServiceDescriptionCommandHandlerTests
 {
     [Theory]
     [MemberData(nameof(s_randomClientTestCaseSource))]
@@ -22,7 +22,7 @@ public partial class DeleteClientCommandHandlerTests
         //     .ReturnsAsync();
 
         // when
-        await this._deleteClientCommandHandler.Handle(new DeleteCommandClient(inputClient.Id),
+        await this._deleteCompanyPhoneNumberCommandHandler.Handle(new DeleteCommandClient(inputClient.Id),
             CancellationToken.None);
 
         // then

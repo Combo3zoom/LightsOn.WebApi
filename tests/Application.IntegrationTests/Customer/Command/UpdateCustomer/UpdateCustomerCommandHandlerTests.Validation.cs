@@ -11,7 +11,8 @@ public partial class UpdateCustomerCommandHandlerTests
     public async Task ShouldThrowValidationExceptionOnUpdateCustomerIfCustomerNameIsEmpty(
         Domain.Entities.Customer exceptedCustomer, string incorrectName)
     {
-        var createdCustomer = new CreateCustomerCommand(exceptedCustomer.Name, exceptedCustomer.PhoneNumber);
+        var createdCustomer = new CreateCustomerCommand(
+            exceptedCustomer.Name, exceptedCustomer.PhoneNumber, exceptedCustomer.DescribeProblem);
         var createdCustomerId = await _testing.SendAsync(createdCustomer);
         
         var incorrectCustomer = new UpdateCustomerCommand(createdCustomerId, incorrectName, exceptedCustomer.PhoneNumber);
@@ -25,7 +26,8 @@ public partial class UpdateCustomerCommandHandlerTests
     public async Task ShouldThrowValidationExceptionOnUpdateCustomerIfCustomerPhoneNumberIsEmpty(
         Domain.Entities.Customer exceptedCustomer, string incorrectPhoneNumber)
     {
-        var createdCustomer = new CreateCustomerCommand(exceptedCustomer.Name, exceptedCustomer.PhoneNumber);
+        var createdCustomer = new CreateCustomerCommand(
+            exceptedCustomer.Name, exceptedCustomer.PhoneNumber, exceptedCustomer.DescribeProblem);
         var createdCustomerId = await _testing.SendAsync(createdCustomer);
         
         var incorrectCustomer = new UpdateCustomerCommand(createdCustomerId, exceptedCustomer.Name, incorrectPhoneNumber);
@@ -39,7 +41,8 @@ public partial class UpdateCustomerCommandHandlerTests
     public async Task ShouldThrowValidationExceptionOnUpdateCustomerIfCustomerNameContainSpecialSymbol(
         Domain.Entities.Customer exceptedCustomer, string incorrectName)
     {
-        var createdCustomer = new CreateCustomerCommand(exceptedCustomer.Name, exceptedCustomer.PhoneNumber);
+        var createdCustomer = new CreateCustomerCommand(
+            exceptedCustomer.Name, exceptedCustomer.PhoneNumber, exceptedCustomer.DescribeProblem);
         var createdCustomerId = await _testing.SendAsync(createdCustomer);
         
         var incorrectCustomer = new UpdateCustomerCommand(createdCustomerId, incorrectName, exceptedCustomer.PhoneNumber);
@@ -53,7 +56,8 @@ public partial class UpdateCustomerCommandHandlerTests
     public async Task ShouldThrowValidationExceptionOnUpdateCustomerIfCustomerPhoneNumberIsLessThanNeed(
         Domain.Entities.Customer exceptedCustomer, string incorrectPhoneNumber)
     {
-        var createdCustomer = new CreateCustomerCommand(exceptedCustomer.Name, exceptedCustomer.PhoneNumber);
+        var createdCustomer = new CreateCustomerCommand(
+            exceptedCustomer.Name, exceptedCustomer.PhoneNumber, exceptedCustomer.DescribeProblem);
         var createdCustomerId = await _testing.SendAsync(createdCustomer);
         
         var incorrectCustomer = new UpdateCustomerCommand(createdCustomerId, exceptedCustomer.Name, incorrectPhoneNumber);

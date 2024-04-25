@@ -4,11 +4,11 @@ namespace LightsOn.Application.IntegrationTests.Client.Command.DeleteClient;
 
 
 [Collection("Tests")]
-public partial class DeleteClientCommandHandlerTests : IClassFixture<Testing>
+public partial class DeleteServiceDescriptionCommandHandlerTests : IClassFixture<Testing>
 {
     private readonly Testing _testing;
 
-    public DeleteClientCommandHandlerTests(Testing testing)
+    public DeleteServiceDescriptionCommandHandlerTests(Testing testing)
     {
         _testing = testing;
     }

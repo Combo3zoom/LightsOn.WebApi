@@ -10,6 +10,9 @@ using LightsOn.Application.Client.Commands.UpdateClient;
 using LightsOn.Application.Client.Queries.GetByIdClient;
 using LightsOn.Application.Client.Queries.GetClients;
 using LightsOn.Application.Common.Behaviours;
+using LightsOn.Application.CompanyPhoneNumber.Commands.CreateCompanyPhoneNumber;
+using LightsOn.Application.CompanyPhoneNumber.Commands.DeleteCompanyPhoneNumber;
+using LightsOn.Application.CompanyPhoneNumber.Queries.GetCompanyPhoneNumbers;
 using LightsOn.Application.Customer.Commands.CreateCustomer;
 using LightsOn.Application.Customer.Commands.DeleteCustomer;
 using LightsOn.Application.Customer.Commands.UpdateCustomer;
@@ -35,6 +38,9 @@ using LightsOn.Application.PowerEquipment.Commands.DeletePowerEquipment;
 using LightsOn.Application.PowerEquipment.Commands.UpdatePowerEquipment;
 using LightsOn.Application.PowerEquipment.Queries.GetByIdPowerEquipment;
 using LightsOn.Application.PowerEquipment.Queries.GetPowerEquipments;
+using LightsOn.Application.ServiceDescription.Commands.CreateServiceDescription;
+using LightsOn.Application.ServiceDescription.Commands.DeleteServiceDescription;
+using LightsOn.Application.ServiceDescription.Queries.GetServiceDescriptions;
 using LightsOn.Application.UnitMeasurement.Commands.CreateUnitMeasurement;
 using LightsOn.Application.UnitMeasurement.Commands.DeleteUnitMeasurement;
 using LightsOn.Application.UnitMeasurement.Commands.UpdateUnitMeasurement;
@@ -78,6 +84,10 @@ public static class ConfigureServices
         services.AddTransient<IGetByIdClientStorageBroker, GetByIdClientStorageBroker>();
         services.AddTransient<IGetClientsQueryStorageBroker, GetClientsQueryStorageBroker>();
         
+        services.AddTransient<ICreateCompanyPhoneNumberCommandHandlerStorageBroker, CreateCompanyPhoneNumberCommandHandlerStorageBroker>();
+        services.AddTransient<IDeleteCompanyPhoneNumberCommandHandlerStorageBroker, DeleteCompanyPhoneNumberCommandHandlerStorageBroker>();
+        services.AddTransient<IGetCompanyPhoneNumbersQueryStorageBroker, GetCompanyPhoneNumbersQueryStorageBroker>();
+        
         services.AddTransient<ICreateCustomerCommandHandlerStorageBroker, CreateCustomerCommandHandlerStorageBroker>();
         services.AddTransient<IDeleteCustomerCommandHandlerStorageBroker, DeleteCustomerCommandHandlerStorageBroker>();
         services.AddTransient<IUpdateCustomerCommandHandlerStorageBroker, UpdateCustomerCommandHandlerStorageBroker>();
@@ -107,6 +117,10 @@ public static class ConfigureServices
         services.AddTransient<IUpdatePowerEquipmentCommandHandlerStorageBroker, UpdatePowerEquipmentCommandHandlerStorageBroker>();
         services.AddTransient<IGetByIdPowerEquipmentQueryHandlerStorageBroker, GetByIdPowerEquipmentQueryHandlerStorageBroker>();
         services.AddTransient<IGetPowerEquipmentsQueryHandlerStorageBroker, GetPowerEquipmentsQueryHandlerStorageBroker>();
+        
+        services.AddTransient<ICreateServiceDescriptionCommandHandlerStorageBroker, CreateServiceDescriptionCommandHandlerStorageBroker>();
+        services.AddTransient<IDeleteServiceDescriptionCommandHandlerStorageBroker, DeleteServiceDescriptionCommandHandlerStorageBroker>();
+        services.AddTransient<IGetServiceDescriptionsQueryStorageBroker, GetServiceDescriptionsQueryStorageBroker>();
         
         services.AddTransient<ICreateUnitMeasurementCommandHandlerStorageBroker, CreateUnitMeasurementCommandHandlerStorageBroker>();
         services.AddTransient<IDeleteUnitMeasurementCommandHandlerStorageBroker, DeleteUnitMeasurementCommandHandlerStorageBroker>();

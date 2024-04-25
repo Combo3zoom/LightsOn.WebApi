@@ -7,7 +7,7 @@ using Xunit;
 
 namespace LightsOn.Application.UnitTests.Client.Command.DeleteClient;
 
-public partial class DeleteClientCommandHandlerTests
+public partial class DeleteServiceDescriptionCommandHandlerTests
 {
     [Theory]
     [MemberData(nameof(s_randomClientTestCaseSource))]
@@ -19,7 +19,7 @@ public partial class DeleteClientCommandHandlerTests
 
         // when
         Func<Task> sut = async () =>
-            await _deleteClientCommandHandler.Handle(new DeleteCommandClient(nonExistentClientId),
+            await _deleteCompanyPhoneNumberCommandHandler.Handle(new DeleteCommandClient(nonExistentClientId),
                 CancellationToken.None);
 
         // then
@@ -43,7 +43,7 @@ public partial class DeleteClientCommandHandlerTests
             .ReturnsAsync(inputFirstClient);
         
         // when
-        await _deleteClientCommandHandler.Handle(new DeleteCommandClient(inputFirstClient.Id),
+        await _deleteCompanyPhoneNumberCommandHandler.Handle(new DeleteCommandClient(inputFirstClient.Id),
                 CancellationToken.None);
         
         _mockContext.Setup(context => context.Clients.FindAsync(It.Is<object?[]?>(
@@ -52,7 +52,7 @@ public partial class DeleteClientCommandHandlerTests
             .ReturnsAsync((Domain.Entities.Client?)null);
         
         Func<Task> secondDeleteAction = async () =>
-            await _deleteClientCommandHandler.Handle(new DeleteCommandClient(inputFirstClient.Id),
+            await _deleteCompanyPhoneNumberCommandHandler.Handle(new DeleteCommandClient(inputFirstClient.Id),
                 CancellationToken.None);
 
         // then

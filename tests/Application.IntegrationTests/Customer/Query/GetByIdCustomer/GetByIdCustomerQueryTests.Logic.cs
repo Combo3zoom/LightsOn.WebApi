@@ -8,7 +8,8 @@ public partial class GetByIdCustomerQueryTests
     [MemberData(nameof(s_randomCustomerTestCaseSource))]
     public async Task ShouldGetByIdCustomer(Domain.Entities.Customer exceptedCustomer)
     {
-        var createdCustomer = new CreateCustomerCommand(exceptedCustomer.Name, exceptedCustomer.PhoneNumber);
+        var createdCustomer = new CreateCustomerCommand(
+            exceptedCustomer.Name, exceptedCustomer.PhoneNumber, exceptedCustomer.DescribeProblem);
         var createdCustomerId = await _testing.SendAsync(createdCustomer);
         
         var customer = await _testing.FindAsync<Domain.Entities.Customer>(createdCustomerId);

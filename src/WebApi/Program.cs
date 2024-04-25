@@ -12,6 +12,16 @@ builder.Configuration.AddEnvironmentVariables();
 builder.Services.AddApplicationServices();
 builder.Services.AddInfrastructureServices(builder.Configuration);
 builder.Services.AddWebServices();
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowSpecificOrigin",
+        builder =>
+        {
+            builder.WithOrigins("https://localhost:7239") // Set the allowed origin here
+                .AllowAnyHeader()
+                .AllowAnyMethod();
+        });
+});
 
 var app = builder.Build();
 
@@ -37,6 +47,18 @@ app.UseSwaggerUI(c =>
     c.SwaggerEndpoint("/swagger/v1/swagger.json", "NAME");
     c.SwaggerEndpoint("/api/swagger/v1/swagger.json", "NAME Reverse proxy");
 });
+
+app.UseCors("AllowSpecificOrigin");
+
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller}/{action=Index}/{id?}");
+
+app.MapFallbackToFile("index.html");
+
+app.UseExceptionHandler(options => { });
+
+app.Map("/", () => Results.Redirect("/swagger"));
 
 app.MapEndpoints();
 

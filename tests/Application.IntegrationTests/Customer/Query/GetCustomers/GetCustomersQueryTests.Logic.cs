@@ -13,10 +13,12 @@ public partial class GetCustomersQueryTests
     {
         var createFirstCustomerCommand = new CreateCustomerCommand(
             firstRandomCustomer.Name,
-            firstRandomCustomer.PhoneNumber);
+            firstRandomCustomer.PhoneNumber,
+            firstRandomCustomer.DescribeProblem);
         var createSecondCustomerCommand = new CreateCustomerCommand(
             secondRandomCustomer.Name,
-            secondRandomCustomer.PhoneNumber);
+            secondRandomCustomer.PhoneNumber,
+            firstRandomCustomer.DescribeProblem);
         
         await _testing.SendAsync(createFirstCustomerCommand);
         await _testing.SendAsync(createSecondCustomerCommand);

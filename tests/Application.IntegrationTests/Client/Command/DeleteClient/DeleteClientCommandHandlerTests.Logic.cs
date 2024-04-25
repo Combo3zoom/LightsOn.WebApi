@@ -4,7 +4,7 @@ using LightsOn.Application.Client.Commands.DeleteClient;
 namespace LightsOn.Application.IntegrationTests.Client.Command.DeleteClient;
 using static Testing;
 
-public partial class DeleteClientCommandHandlerTests : BaseTestFixture
+public partial class DeleteServiceDescriptionCommandHandlerTests : BaseTestFixture
 {
     [Theory]
     [MemberData(nameof(s_randomClientTestCaseSource))]

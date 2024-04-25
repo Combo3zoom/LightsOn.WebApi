@@ -8,17 +8,17 @@ using Tynamix.ObjectFiller;
 
 namespace LightsOn.Application.UnitTests.Client.Command.DeleteClient;
 
-public partial class DeleteClientCommandHandlerTests
+public partial class DeleteServiceDescriptionCommandHandlerTests
 {
     private Mock<IApplicationDbContext> _mockContext;
-    private DeleteClientCommandHandler _deleteClientCommandHandler;
+    private DeleteCompanyPhoneNumberCommandHandler _deleteCompanyPhoneNumberCommandHandler;
     private Mock<IDeleteClientCommandHandlerStorageBroker> _deleteClientCommandHandlerStorageBroker;
 
     public static IEnumerable<object[]> s_randomClientTestCaseSource = new List<object[]>
     {
         new object[] {CreateRandomClient()}
     };
-    public DeleteClientCommandHandlerTests()
+    public DeleteServiceDescriptionCommandHandlerTests()
     {
         _mockContext = new Mock<IApplicationDbContext>();
 
@@ -28,7 +28,7 @@ public partial class DeleteClientCommandHandlerTests
             .Returns(mockDbSet.Object);
 
         _deleteClientCommandHandlerStorageBroker = new Mock<IDeleteClientCommandHandlerStorageBroker>();
-        _deleteClientCommandHandler = new DeleteClientCommandHandler(_mockContext.Object,
+        _deleteCompanyPhoneNumberCommandHandler = new DeleteCompanyPhoneNumberCommandHandler(_mockContext.Object,
             _deleteClientCommandHandlerStorageBroker.Object);
     }
 

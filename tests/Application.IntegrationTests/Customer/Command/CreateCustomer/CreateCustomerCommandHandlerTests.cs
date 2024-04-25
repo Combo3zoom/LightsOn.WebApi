@@ -38,11 +38,14 @@ public partial class CreateCustomerCommandHandlerTests : IClassFixture<Testing>
             new RandomListItem<string>(["Олександр", "Iryna", "Максим", "Anna", "Тарас10"]);
         var generatedPhoneNumber =
             new RandomListItem<string>(["+380 12 345 67 89", "098 765 43 21", "+380 50 123 45 67"]);
+        var generatedDescribeProblem =
+            new RandomListItem<string>(["Паливо", "Каністра", "Не запускається генератор"]);
         
         filler.Setup()
             .OnProperty(x => x.Id).IgnoreIt()
             .OnProperty(x => x.Name).Use(generatedName)
             .OnProperty(x => x.PhoneNumber).Use(generatedPhoneNumber)
+            .OnProperty(x => x.DescribeProblem).Use(generatedDescribeProblem)
             .OnProperty(x => x.Created).Use(() => DateTimeOffset.UtcNow)
             .OnProperty(x => x.LastModified).Use(() => null);
 

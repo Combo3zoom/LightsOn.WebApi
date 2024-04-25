@@ -1,4 +1,4 @@
 ﻿
 namespace LightsOn.Application.UnitTests.Client.Queries.GetClients;
 
-public partial class GetClientsQueryHandlerTests { }
+public partial class GetServiceDescriptionsQueryHandlerTests { }

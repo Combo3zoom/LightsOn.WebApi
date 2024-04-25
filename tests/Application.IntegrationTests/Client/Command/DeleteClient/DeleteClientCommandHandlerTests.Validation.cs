@@ -4,7 +4,7 @@ using LightsOn.Application.TodoLists.Commands.DeleteTodoList;
 
 namespace LightsOn.Application.IntegrationTests.Client.Command.DeleteClient;
 using static LightsOn.Application.IntegrationTests.Testing;
-public partial class DeleteClientCommandHandlerTests
+public partial class DeleteServiceDescriptionCommandHandlerTests
 {
     [Theory]
     [MemberData(nameof(s_randomClientTestCaseSource))]

@@ -7,6 +7,7 @@ using LightsOn.Infrastructure.Data.Configurations;
 using LightsOn.WebApi.Infrastructure;
 using LightsOn.WebApi.Logging;
 using LightsOn.WebApi.Services;
+using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.OpenApi.Models;
 using RESTFulSense.Clients;
@@ -29,10 +30,12 @@ public static class ConfigureServices
             .AddDbContextCheck<ApplicationDbContext>();
 
         services.AddExceptionHandler<CustomExceptionHandler>();
-
-        services.AddRazorPages();
-        
-        services.AddServerSideBlazor();
+        services.Configure<ForwardedHeadersOptions>(options =>
+        {
+            options.ForwardedHeaders =
+                ForwardedHeaders.XForwardedFor 
+                | ForwardedHeaders.XForwardedProto;
+        });
         
         services.AddScoped<ILogger, Logger<LoggingBroker>>();
         services.AddScoped<ILoggingBroker, LoggingBroker>();

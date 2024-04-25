@@ -3,7 +3,7 @@ WORKDIR /app
 EXPOSE 80
 EXPOSE 443
 
-FROM mcr.microsoft.com/dotnet/sdk:8.0-preview-jammy AS build
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 COPY ["../src/WebApi/WebApi.csproj", "src/WebApi/"]
 COPY ["../src/Application/Application.csproj", "src/Application/"]

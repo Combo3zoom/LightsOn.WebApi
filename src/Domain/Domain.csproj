@@ -9,7 +9,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="MediatR" />
+        <PackageReference Include="MediatR" />
     </ItemGroup>
 
 </Project>

@@ -7,7 +7,7 @@ using Microsoft.OpenApi.Models;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddKeyVaultIfConfigured(builder.Configuration);
-builder.Configuration.AddEnvironmentVariables();
+builder.Configuration.AddEnvironmentVariables().AddJsonFile("appsettings.json");
 
 builder.Services.AddApplicationServices();
 builder.Services.AddInfrastructureServices(builder.Configuration);

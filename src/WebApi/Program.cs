@@ -14,14 +14,15 @@ builder.Services.AddInfrastructureServices(builder.Configuration);
 builder.Services.AddWebServices();
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowSpecificOrigin",
+    options.AddPolicy("AllowAll",
         builder =>
         {
-            builder.WithOrigins("https://localhost:7239") // Set the allowed origin here
+            builder.AllowAnyOrigin()
                 .AllowAnyHeader()
                 .AllowAnyMethod();
         });
 });
+builder.Services.AddHealthChecks();
 
 var app = builder.Build();
 
@@ -38,17 +39,13 @@ app.UseForwardedHeaders();
 app.UseHealthChecks("/health");
 app.UseStaticFiles();
 
-app.UseSwagger(options =>
-{
-    options.RouteTemplate = "api/swagger/{documentName}/swagger.{json|yaml}";
-});
+app.UseSwagger();
 app.UseSwaggerUI(c =>
 {
-    c.SwaggerEndpoint("/swagger/v1/swagger.json", "NAME");
-    c.SwaggerEndpoint("/api/swagger/v1/swagger.json", "NAME Reverse proxy");
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Swagger UI");
 });
 
-app.UseCors("AllowSpecificOrigin");
+app.UseCors("AllowAll");
 
 app.MapControllerRoute(
     name: "default",
@@ -57,8 +54,6 @@ app.MapControllerRoute(
 app.MapFallbackToFile("index.html");
 
 app.UseExceptionHandler(options => { });
-
-app.Map("/", () => Results.Redirect("/swagger"));
 
 app.MapEndpoints();
 

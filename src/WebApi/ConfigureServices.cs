@@ -73,6 +73,7 @@ public static class ConfigureServices
             });
             
         });
+        services.AddControllers();
 
         return services;
     }

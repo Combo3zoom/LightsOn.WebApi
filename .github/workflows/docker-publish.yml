@@ -9,7 +9,6 @@ on:
 
 env:
   REGISTRY: registry.digitalocean.com/lights-on-container-registry
-  # Replace 'your-project' with your project name at DigitalOcean
   IMAGE_NAME: web-api
 
 jobs:
@@ -46,17 +45,9 @@ jobs:
         uses: docker/build-push-action@v5.0.0
         with:
           context: .
+          file: ./src/WebApi/Dockerfile
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
-
-      # This step is optional and depends on whether you want to use Cosign
-      # with DigitalOcean or if it's applicable to your workflow.
-      - name: Sign the published Docker image
-        if: ${{ github.event_name != 'pull_request' }}
-        env:
-          TAGS: ${{ steps.meta.outputs.tags }}
-          DIGEST: ${{ steps.build-and-push.outputs.digest }}
-        run: echo "${TAGS}" | xargs -I {} cosign sign --yes {}@${DIGEST}

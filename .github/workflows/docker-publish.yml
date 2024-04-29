@@ -8,9 +8,9 @@ on:
     branches: [ "main" ]
 
 env:
-  REGISTRY: registry.digitalocean.com
+  REGISTRY: registry.digitalocean.com/lights-on-container-registry
   # Replace 'your-project' with your project name at DigitalOcean
-  IMAGE_NAME: ${{ github.repository }}
+  IMAGE_NAME: web-api
 
 jobs:
   build:

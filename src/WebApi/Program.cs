@@ -1,17 +1,21 @@
 using LightsOn.Application;
+using LightsOn.Infrastructure.Data;
 using LightsOn.WebApi;
 using LightsOn.WebApi.Infrastructure;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Primitives;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddKeyVaultIfConfigured(builder.Configuration);
-builder.Configuration.AddEnvironmentVariables();
+builder.Configuration.AddEnvironmentVariables().AddJsonFile("appsettings.json");
 
 builder.Services.AddApplicationServices();
 builder.Services.AddInfrastructureServices(builder.Configuration);
 builder.Services.AddWebServices();
+builder.Services.AddControllers();
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll",

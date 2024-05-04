@@ -9,7 +9,8 @@ using Microsoft.OpenApi.Models;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddKeyVaultIfConfigured(builder.Configuration);
-builder.Configuration.AddEnvironmentVariables().AddJsonFile("appsettings.json");
+builder.Configuration.AddEnvironmentVariables()
+    .AddJsonFile("appsettings.json", true);
 
 builder.Services.AddApplicationServices();
 builder.Services.AddInfrastructureServices(builder.Configuration);

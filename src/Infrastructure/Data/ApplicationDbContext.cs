@@ -34,8 +34,6 @@ public class  ApplicationDbContext : IdentityDbContext<ApplicationUser>, IApplic
     }
     
     public override ValueTask DisposeAsync() {
-        Console.WriteLine("***EmptyDbContext Disposed");
-
         base.DisposeAsync();
 
         return new ValueTask();

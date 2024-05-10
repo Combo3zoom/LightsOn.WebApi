@@ -29,6 +29,8 @@
         <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore" />
         <PackageReference Include="FluentValidation.AspNetCore" />
         <PackageReference Include="RESTFulSense" />
+        <PackageReference Include="Serilog.AspNetCore" />
+        <PackageReference Include="Serilog.Sinks.Postgresql.Alternative" />
         <PackageReference Include="Swashbuckle.AspNetCore" />
         <PackageReference Include="Swashbuckle.AspNetCore.Swagger" />
         <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" />

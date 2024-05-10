@@ -22,7 +22,7 @@
     <PackageVersion Include="Microsoft.AspNetCore.Identity.UI" Version="8.0.0-preview.6.23329.11" />
     <PackageVersion Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.0" />
     <PackageVersion Include="Microsoft.EntityFrameworkCore" Version="8.0.0" />
-    <PackageVersion Include="Microsoft.EntityFrameworkCore.Relational" Version="8.0.0" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.Relational" Version="8.0.4" />
     <PackageVersion Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.0" />
     <PackageVersion Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.0">
       <PrivateAssets>all</PrivateAssets>
@@ -37,6 +37,9 @@
     <PackageVersion Include="Moq.EntityFrameworkCore" Version="7.0.0.2" />
     <PackageVersion Include="Respawn" Version="6.1.0" />
     <PackageVersion Include="RESTFulSense" Version="2.15.0" />
+    <PackageVersion Include="Serilog.AspNetCore" Version="8.0.1" />
+    <PackageVersion Include="Serilog.Sinks.PostgreSQL" Version="2.3.0" />
+    <PackageVersion Include="Serilog.Sinks.Postgresql.Alternative" Version="4.0.3" />
     <PackageVersion Include="Swashbuckle.AspNetCore" Version="6.5.0" />
     <PackageVersion Include="Swashbuckle.AspNetCore.Swagger" Version="6.5.0" />
     <PackageVersion Include="Swashbuckle.AspNetCore.SwaggerGen" Version="6.5.0" />
@@ -51,7 +54,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageVersion>
     <PackageVersion Include="ZymLabs.NSwag.FluentValidation.AspNetCore" Version="0.6.2" />
-    <PackageVersion Include="Npgsql" Version="8.0.0" />
-    <PackageVersion Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.0" />
+    <PackageVersion Include="Npgsql" Version="8.0.3" />
+    <PackageVersion Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.2" />
   </ItemGroup>
 </Project>

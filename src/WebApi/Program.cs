@@ -14,9 +14,9 @@ builder.Host.UseSerilog((context, configuration) =>
 
 builder.Services.AddKeyVaultIfConfigured(builder.Configuration);
 builder.Configuration
+    .AddEnvironmentVariables()
     .AddJsonFile("appsettings.json")
-    .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", true)
-    .AddEnvironmentVariables();
+    .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", true);
 
 builder.Services.AddApplicationServices();
 builder.Services.AddInfrastructureServices(builder.Configuration);

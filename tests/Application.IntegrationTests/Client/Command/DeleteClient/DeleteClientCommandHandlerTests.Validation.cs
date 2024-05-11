@@ -1,6 +1,5 @@
 ﻿using FluentValidation;
 using LightsOn.Application.Client.Commands.DeleteClient;
-using LightsOn.Application.TodoLists.Commands.DeleteTodoList;
 
 namespace LightsOn.Application.IntegrationTests.Client.Command.DeleteClient;
 using static LightsOn.Application.IntegrationTests.Testing;

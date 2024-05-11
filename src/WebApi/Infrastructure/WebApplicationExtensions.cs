@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using LightsOn.Application.Common.Extensions;
 
 namespace LightsOn.WebApi.Infrastructure;
 
@@ -6,7 +7,7 @@ public static class WebApplicationExtensions
 {
     public static RouteGroupBuilder MapGroup(this WebApplication app, EndpointGroupBase group)
     {
-        var groupName = group.GetType().Name;
+        var groupName = group.GetType().Name.PascalToKebabCase();
 
         return app
             .MapGroup($"/api/{groupName}")

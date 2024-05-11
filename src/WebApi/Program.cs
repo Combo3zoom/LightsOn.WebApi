@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Primitives;
 using Microsoft.OpenApi.Models;
 using Serilog;
+using Telegram.Bot;
 
 var builder = WebApplication.CreateBuilder(args);
 

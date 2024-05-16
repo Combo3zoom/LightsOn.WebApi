@@ -5,12 +5,19 @@ using LightsOn.WebApi.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Primitives;
 using Microsoft.OpenApi.Models;
+using Serilog;
+using Telegram.Bot;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Host.UseSerilog((context, configuration) =>
+    configuration.ReadFrom.Configuration(context.Configuration));
+
 builder.Services.AddKeyVaultIfConfigured(builder.Configuration);
-builder.Configuration.AddEnvironmentVariables()
-    .AddJsonFile("appsettings.json", true);
+builder.Configuration
+    .AddEnvironmentVariables()
+    .AddJsonFile("appsettings.json")
+    .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", true);
 
 builder.Services.AddApplicationServices();
 builder.Services.AddInfrastructureServices(builder.Configuration);
@@ -30,6 +37,8 @@ builder.Services.AddCors(options =>
 builder.Services.AddHealthChecks();
 
 var app = builder.Build();
+
+app.UseSerilogRequestLogging();
 
 if (app.Environment.IsDevelopment())
 {

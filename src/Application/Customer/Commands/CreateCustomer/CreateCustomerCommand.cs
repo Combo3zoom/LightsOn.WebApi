@@ -3,7 +3,7 @@ using LightsOn.Domain.Events.Customer;
 
 namespace LightsOn.Application.Customer.Commands.CreateCustomer;
 
-public record CreateCustomerCommand(string Name, string PhoneNumber, string DescribeProblem) : IRequest<int>;
+public record CreateCustomerCommand(string Name, string PhoneNumber, string ProblemDescription) : IRequest<int>;
 
 public class CreateCustomerCommandHandler : IRequestHandler<CreateCustomerCommand, int>
 {
@@ -35,11 +35,11 @@ public class CreateCustomerCommandHandlerStorageBroker : ICreateCustomerCommandH
 
     public async Task<int> CreateCustomer(CreateCustomerCommand request, CancellationToken cancellationToken)
     {
-        var entity = new Domain.Entities.Customer(request.Name, request.PhoneNumber, request.DescribeProblem); 
+        var entity = new Domain.Entities.Customer(request.Name, request.PhoneNumber, request.ProblemDescription); 
         
         entity.AddDomainEvent(new CustomerCreatedEvent(entity));
 
-        _context.Customers.Add(entity);
+        await _context.Customers.AddAsync(entity, cancellationToken);
         
         await _context.SaveChangesAsync(cancellationToken);
 

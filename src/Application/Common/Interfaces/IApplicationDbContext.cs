@@ -4,9 +4,6 @@ namespace LightsOn.Application.Common.Interfaces;
 
 public interface IApplicationDbContext
 {
-    DbSet<TodoList> TodoLists { get; }
-
-    DbSet<TodoItem> TodoItems { get; }
     DbSet<Domain.Entities.CategoryExpense> CategoryExpenses { get; }
 
     DbSet<Domain.Entities.CompanyPhoneNumber> CompanyPhoneNumbers { get; }

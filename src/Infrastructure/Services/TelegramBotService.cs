@@ -37,7 +37,8 @@ public class TelegramBotService : ITelegramBot
         {
             try
             {
-                await _botClient.SendTextMessageAsync(chatId, message);
+                await _botClient.SendTextMessageAsync(chatId, message,
+                    parseMode: ParseMode.Markdown);
                 _logger.LogInformation("Message sent to {ChatId}", chatId);
             }
             catch (Exception ex)

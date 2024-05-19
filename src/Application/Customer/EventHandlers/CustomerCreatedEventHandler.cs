@@ -18,10 +18,15 @@ public class CustomerCreatedEventHandler : INotificationHandler<CustomerCreatedE
     public async Task Handle(CustomerCreatedEvent notification, CancellationToken cancellationToken)
     {
         _logger.LogInformation("Customer created event: {DomainEvent}", notification.GetType().Name);
+
+        var message = $"""
+                       Нове замовлення:
+                       *- Ім'я:* {notification.Customer.Name}
+                       *- Телефон:* {notification.Customer.PhoneNumber}
+                       *- Опис проблеми:* {notification.Customer.DescribeProblem}
+                       """;
         
-        await _telegramBot.SendMessageToAllowedUsers($"Customer name {notification.Customer.Name}\n" +
-                                                     $"Phone number {notification.Customer.PhoneNumber}\n"+
-                                                    $"Description problem {notification.Customer.DescribeProblem}");
+        await _telegramBot.SendMessageToAllowedUsers(message);
         
         _logger.LogInformation("Send telegram bot message event");
     }
